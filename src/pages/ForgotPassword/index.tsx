@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft, FiMail } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
@@ -14,17 +14,21 @@ import {
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import logoImg from '../../assets/logo.svg';
+import api from '../../services/api';
 
 interface ForgotPasswordFormData {
   email: string;
 }
 
 const ForgotPassword: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
 
   const handleSubmit = useCallback(async (data: ForgotPasswordFormData) => {
     try {
+      setLoading(true);
+
       formRef.current?.setErrors({});
 
       const schema = Yup.object().shape({
@@ -33,8 +37,17 @@ const ForgotPassword: React.FC = () => {
 
       await schema.validate(data, { abortEarly: false });
 
+      const { email } = data;
       // recuperação de senha
+      await api.post('/password/forgot', {
+        email,
+      });
 
+      addToast({
+        type: 'success',
+        title: 'E-mail de recuperação enviado.',
+        description: 'Enviamos um e-mail para confirmar a recuperação de senha. Cheque sua caixa de entrada',
+      });
       // history.push('/dashboard');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
@@ -48,6 +61,8 @@ const ForgotPassword: React.FC = () => {
         description:
         'Ocorreu um erro ao tentar realizar a recuperação de senha, tente novamente.',
       });
+    } finally {
+      setLoading(false);
     }
   }, [addToast]);
 
@@ -61,7 +76,7 @@ const ForgotPassword: React.FC = () => {
 
             <Input icon={FiMail} name="email" placeholder="E-mail" />
 
-            <Button type="submit">Recuperar</Button>
+            <Button loading={loading} type="submit">Recuperar</Button>
           </Form>
 
           <Link to="/">
