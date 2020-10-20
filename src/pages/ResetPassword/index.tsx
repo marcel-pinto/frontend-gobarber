@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -14,6 +14,7 @@ import {
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import logoImg from '../../assets/logo.svg';
+import api from '../../services/api';
 
 interface ResetPasswordFormData {
   password: string;
@@ -24,6 +25,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
+  const location = useLocation();
 
   const handleSubmit = useCallback(async (data: ResetPasswordFormData) => {
     try {
@@ -41,7 +43,19 @@ const SignIn: React.FC = () => {
 
       const { password_confirmation, password } = data;
 
-      history.push('/signin');
+      const token = location.search.replace('?token=', '');
+
+      if (!token) {
+        throw new Error('');
+      }
+
+      await api.post('/password/reset', {
+        password,
+        password_confirmation,
+        token,
+      });
+
+      history.push('/');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error);
@@ -54,7 +68,7 @@ const SignIn: React.FC = () => {
         description: 'Ocorreu um erro ao resetar sua senha, tente novamente.',
       });
     }
-  }, [addToast, history]);
+  }, [addToast, history, location.search]);
 
   return (
     <Container>
