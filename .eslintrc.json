@@ -31,6 +31,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "no-unused-expressions": "off",
+    "import/no-duplicates": "off",
     "camelcase": "off",
     "react/jsx-filename-extension": [
       1,
