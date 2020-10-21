@@ -178,6 +178,7 @@ export const Appointment = styled.div`
       display: flex;
       align-items: center;
       color: #f4ede8;
+      width: 70px;
 
       svg {
         color: #ff9000;
@@ -205,9 +206,7 @@ export const Appointment = styled.div`
       color: #fff;
       font-size: 20px;
     }
-    }
   }
-
 `;
 
 export const Calendar = styled.aside`
