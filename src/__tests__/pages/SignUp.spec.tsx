@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import SignIn from '../../pages/SignIn';
-
+import SignUp from '../../pages/SignUp';
+import api from '../../services/api'
 const mockedHistoryPush = jest.fn();
 const mockedSignIn = jest.fn();
 const mockedAddToast = jest.fn();
@@ -25,56 +25,65 @@ jest.mock('../../hooks/toast', () => ({
   }),
 }));
 
-describe('SignIn Page', () => {
+const apiPost = jest.spyOn(api, 'post')
+
+apiPost.mockImplementation(async () => {});
+
+describe('SignUp Page', () => {
   beforeEach(() => {
     mockedHistoryPush.mockClear();
   });
 
-  it('should be able to sign in', async () => {
-    const { getByPlaceholderText, getByText } = render(<SignIn />);
+  it('should be able to sign up', async () => {
+    const { getByPlaceholderText, getByText } = render(<SignUp />);
 
+    const nameField = getByPlaceholderText('Nome');
     const emailField = getByPlaceholderText('E-mail');
     const passwordField = getByPlaceholderText('Senha');
-    const buttonElement = getByText('Entrar');
+    const buttonElement = getByText('Cadastrar');
 
+    fireEvent.change(nameField, { target: { value: 'John Doe' } });
     fireEvent.change(emailField, { target: { value: 'johndoe@example.com' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
 
     fireEvent.click(buttonElement);
 
     await waitFor(() => {
-      expect(mockedHistoryPush).toHaveBeenCalledWith('/dashboard');
+      expect(mockedHistoryPush).toHaveBeenCalledWith('/');
     });
   });
 
-  it('should not be able to sign in with invalid credentials', async () => {
-    const { getByPlaceholderText, getByText } = render(<SignIn />);
+  it('should not be able to sign up with invalid email', async () => {
+    const { getByPlaceholderText, getByText } = render(<SignUp />);
 
+    const nameField = getByPlaceholderText('Nome');
     const emailField = getByPlaceholderText('E-mail');
     const passwordField = getByPlaceholderText('Senha');
-    const buttonElement = getByText('Entrar');
+    const buttonElement = getByText('Cadastrar');
 
-    fireEvent.change(emailField, { target: { value: 'invalid-email' } });
+    fireEvent.change(nameField, { target: { value: 'John Doe' } });
+    fireEvent.change(emailField, { target: { value: 'an invalid email' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
 
     fireEvent.click(buttonElement);
 
     await waitFor(() => {
-      expect(mockedHistoryPush).not.toHaveBeenCalled();
+      expect(mockedHistoryPush).not.toHaveBeenCalledWith('/');
     });
   });
+  it('should display an error if registration fails', async () => {
+    apiPost.mockImplementation( async () => {
+      throw new Error('');
+    })
 
-  it('should display an error if login fails', async () => {
-    mockedSignIn.mockImplementation(() => {
-      throw new Error();
-    });
+    const { getByPlaceholderText, getByText } = render(<SignUp />);
 
-    const { getByPlaceholderText, getByText } = render(<SignIn />);
-
+    const nameField = getByPlaceholderText('Nome');
     const emailField = getByPlaceholderText('E-mail');
     const passwordField = getByPlaceholderText('Senha');
-    const buttonElement = getByText('Entrar');
+    const buttonElement = getByText('Cadastrar');
 
+    fireEvent.change(nameField, { target: { value: 'John Doe' } });
     fireEvent.change(emailField, { target: { value: 'johndoe@example.com' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
 
