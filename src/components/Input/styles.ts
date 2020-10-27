@@ -37,22 +37,17 @@ export const Container = styled.div<ContainerProps>`
   }
   svg {
     margin-right: 16px;
-    color: #666360;
   }
 
   ${(props) => props.hasError && css`
     border-color: #C53030;
   `}
   ${(props) => props.isFocused && css`
-    svg {
-      color: #ff9000;
-    }
+    color: #ff9000;
     border-color: #ff9000;
   `}
   ${(props) => props.isFilled && css`
-    svg {
-      color: #ff9000;
-    }
+    color: #ff9000;
   `}
 `;
 

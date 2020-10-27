@@ -38,8 +38,8 @@ const Input: React.FC<InputProps> = ({
   }, [fieldName, registerField]);
 
   return (
-    <Container style={containerStyle} hasError={!!error} isFilled={isFilled} isFocused={isFocused}>
-      {Icon && <Icon size={20} />}
+    <Container data-testid="input-container" style={containerStyle} hasError={!!error} isFilled={isFilled} isFocused={isFocused}>
+      {Icon && <Icon data-testid="input-icon" size={20} />}
       <input
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
@@ -50,7 +50,7 @@ const Input: React.FC<InputProps> = ({
       {error
         && (
           <Error title={error}>
-            <FiAlertCircle color="#c53030" size={20} />
+            <FiAlertCircle data-testid="input-error" color="#c53030" size={20} />
           </Error>
         )}
     </Container>
