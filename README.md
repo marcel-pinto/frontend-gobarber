@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./.github/logo.svg" height="100px" >
+  <img src="./.github/logo.svg" height="150px" >
 </h1>
 
 # GoBarber Front-end application
