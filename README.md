@@ -22,9 +22,18 @@
   </a>
 </div>
 
-<h1>
-  <img src="./.github/login.gif" >
-</h1>
+---
+
+<img src="./.github/create-account.gif" >
+
+---
+
+---
+
+<img src="./.github/login.gif" >
+
+---
+
 # Features
 
 # Instalation
