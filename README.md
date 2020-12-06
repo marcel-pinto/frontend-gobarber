@@ -28,7 +28,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <summary><h2 style="display: inline-block"> 📌 Table of Contents</h2></summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -54,7 +54,7 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## 📝 About The Project
 
 [![GoBarber cover][gobarber-cover]](https://github.com/marcel-pinto/frontend-gobarber)
 
@@ -70,7 +70,7 @@ Gobarber is a marketplace developed in the bootcamp GoStack. This application co
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+## 🏃 Getting Started
 
 To get a local copy up and running follow these simple steps.
 
@@ -108,7 +108,7 @@ Next, you'll need the api. Go to the [backend repository](https://github.com/mar
 
     <!-- USAGE EXAMPLES -->
 
-## Usage
+## 👨🏻‍💻 Usage
 
 You can create an account by clicking in "Criar conta"
 <br />
@@ -124,13 +124,13 @@ In the logged area, you have access to all your scheduled appointments. Use the 
 
 <!-- ROADMAP -->
 
-## Roadmap
+## 🗺 Roadmap
 
 See the [open issues](https://github.com/marcel-pinto/frontend-gobarber/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -142,7 +142,7 @@ Contributions are what make the open source community such an amazing place to b
 
 <!-- LICENSE -->
 
-## License
+## 📓 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
