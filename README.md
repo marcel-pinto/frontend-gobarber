@@ -55,9 +55,8 @@
 
 [![GoBarber cover][gobarber-cover]](https://github.com/marcel-pinto/frontend-gobarber)
 
----
-
 <br />
+
 Gobarber is a marketplace developed in the bootcamp GoStack. This application consists of two clients that consumes an [restfull api](https://github.com/marcel-pinto/backend-go-barber). The [web client](https://github.com/marcel-pinto/frontend-gobarber) is build for the providers, where the barbers can check their daily schedule. The [mobile client](https://github.com/marcel-pinto/mobile-go-barber) is build for the barbers' clients. There, the user can book an appointement and check the daily and monthly availability of all barbers.
 
 ### Built With
@@ -113,14 +112,10 @@ You can create an account by clicking in "Criar conta"
 
 [![Create user screenshot][create-user-screenshot]](https://github.com/marcel-pinto/frontend-gobarber)
 
----
-
 After creation you will be redirected to the login page
 <br />
 
 [![Login screenshot][login-screenshot]](https://github.com/marcel-pinto/frontend-gobarber)
-
----
 
 In the logged area, you have access to all your scheduled appointments. Use the calendar on the right side to check other days.
 
